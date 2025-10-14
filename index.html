@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" data-astro-cid-j7pv25f6>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/webp" href="/greene.webp">
+        <meta name="viewport" content="width=device-width">
+        <meta name="generator" content="Astro v5.13.2">
+        <title>$GREENE - The TON Pepe Revolution</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <script type="module">
+            window.addEventListener("load", () => {
+                setTimeout( () => {
+                    const e = document.getElementById("loading-screen");
+                    e.style.opacity = "0",
+                    setTimeout( () => {
+                        e.style.display = "none"
+                    }
+                    , 500)
+                }
+                , 1e3)
+            }
+            );
+            document.querySelectorAll('a[href^="#"]').forEach(e => {
+                e.addEventListener("click", function(t) {
+                    t.preventDefault();
+                    const a = document.querySelector(this.getAttribute("href"));
+                    a && a.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    })
+                })
+            }
+            );
+            function i() {
+                document.querySelectorAll(".stat-value[data-target], .stat-number[data-target]").forEach(t => {
+                    const a = parseInt(t.getAttribute("data-target"))
+                      , o = a / (2e3 / 16);
+                    let n = 0;
+                    const r = setInterval( () => {
+                        n += o,
+                        n >= a ? (t.textContent = a.toLocaleString(),
+                        clearInterval(r)) : t.textContent = Math.floor(n).toLocaleString()
+                    }
+                    , 16)
+                }
+                )
+            }
+            const s = {
+                root: null,
+                rootMargin: "0px",
+                threshold: .1
+            }
+              , l = new IntersectionObserver(e => {
+                e.forEach(t => {
+                    t.isIntersecting && (t.target.classList.add("animate-in"),
+                    t.target.querySelector(".stat-value, .stat-number") && i())
+                }
+                )
+            }
+            ,s);
+            document.querySelectorAll("section").forEach(e => {
+                l.observe(e)
+            }
+            );
+            anime.timeline({
+                loop: !1
+            }).add({
+                targets: ".hero-title .title-line",
+                translateY: [100, 0],
+                opacity: [0, 1],
+                duration: 1e3,
+                delay: 500,
+                easing: "easeOutExpo"
+            }).add({
+                targets: ".hero-title .title-subtitle",
+                translateY: [50, 0],
+                opacity: [0, 1],
+                duration: 800,
+                delay: 200,
+                easing: "easeOutExpo"
+            }, "-=600").add({
+                targets: ".hero-description",
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 600,
+                easing: "easeOutExpo"
+            }, "-=400").add({
+                targets: ".hero-buttons .btn",
+                scale: [0, 1],
+                opacity: [0, 1],
+                duration: 500,
+                delay: anime.stagger(100),
+                easing: "easeOutBack"
+            }, "-=200");
+            anime({
+                targets: ".feature-card",
+                translateY: [50, 0],
+                opacity: [0, 1],
+                duration: 800,
+                delay: anime.stagger(200),
+                easing: "easeOutExpo"
+            });
+            anime({
+                targets: ".main-pepe",
+                translateY: [-10, 10],
+                duration: 3e3,
+                direction: "alternate",
+                loop: !0,
+                easing: "easeInOutSine"
+            });
+            anime({
+                targets: ".roadmap-item",
+                translateX: [-50, 0],
+                opacity: [0, 1],
+                duration: 600,
+                delay: anime.stagger(300),
+                easing: "easeOutExpo"
+            });
+            document.querySelectorAll(".social-link").forEach(e => {
+                e.addEventListener("mouseenter", () => {
+                    anime({
+                        targets: e.querySelector(".social-icon"),
+                        scale: [1, 1.2],
+                        duration: 300,
+                        easing: "easeOutExpo"
+                    })
+                }
+                ),
+                e.addEventListener("mouseleave", () => {
+                    anime({
+                        targets: e.querySelector(".social-icon"),
+                        scale: [1.2, 1],
+                        duration: 300,
+                        easing: "easeOutExpo"
+                    })
+                }
+                )
+            }
+            );
+            anime({
+                targets: ".floating-pepe img",
+                scale: [.8, 1.2],
+                duration: 2e3,
+                direction: "alternate",
+                loop: !0,
+                delay: anime.stagger(500),
+                easing: "easeInOutSine"
+            });
+            anime({
+                targets: ".floating-ton img",
+                scale: [.7, 1.1],
+                opacity: [.2, .4],
+                duration: 3e3,
+                direction: "alternate",
+                loop: !0,
+                delay: anime.stagger(800),
+                easing: "easeInOutQuad"
+            });
+            document.querySelector(".contract-code").addEventListener("click", function() {
+                navigator.clipboard.writeText(this.textContent).then( () => {
+                    const e = this.textContent;
+                    this.textContent = "Copied!",
+                    this.style.background = "rgba(0, 255, 136, 0.3)",
+                    setTimeout( () => {
+                        this.textContent = e,
+                        this.style.background = "rgba(0, 0, 0, 0.3)"
+                    }
+                    , 1500)
+                }
+                )
+            });
+        </script>
+        <link rel="stylesheet" href="/_astro/index.DUhqQqZu.css">
+    </head>
+    <body data-astro-cid-j7pv25f6>
+        <div id="loading-screen" data-astro-cid-j7pv25f6>
+            <div class="pepe-loader" data-astro-cid-j7pv25f6>
+                <img src="/greene.webp" alt="Loading Greene" class="loading-greene" data-astro-cid-j7pv25f6>
+            </div>
+            <p data-astro-cid-j7pv25f6>Loading Greene...</p>
+        </div>
+        <nav class="navbar" data-astro-cid-j7pv25f6>
+            <div class="nav-container" data-astro-cid-j7pv25f6>
+                <div class="nav-logo" data-astro-cid-j7pv25f6>
+                    <span class="logo-text" data-astro-cid-j7pv25f6>$GREENE</span>
+                    <div class="pepe-sticker" data-astro-cid-j7pv25f6>
+                        <img src="/greene.webp" alt="Greene Logo" class="nav-greene-logo" data-astro-cid-j7pv25f6>
+                    </div>
+                </div>
+                <div class="nav-menu" data-astro-cid-j7pv25f6>
+                    <a href="#home" class="nav-link" data-astro-cid-j7pv25f6>Home</a>
+                    <a href="#about" class="nav-link" data-astro-cid-j7pv25f6>About</a>
+                    <a href="#tokenomics" class="nav-link" data-astro-cid-j7pv25f6>Tokenomics</a>
+                    <a href="#how-to-buy" class="nav-link" data-astro-cid-j7pv25f6>How to Buy</a>
+                    <a href="#roadmap" class="nav-link" data-astro-cid-j7pv25f6>Roadmap</a>
+                    <a href="#community" class="nav-link" data-astro-cid-j7pv25f6>Community</a>
+                </div>
+                <div class="hamburger" data-astro-cid-j7pv25f6>
+                    <span data-astro-cid-j7pv25f6></span>
+                    <span data-astro-cid-j7pv25f6></span>
+                    <span data-astro-cid-j7pv25f6></span>
+                </div>
+            </div>
+        </nav>
+        <section id="home" class="hero" data-astro-cid-j7pv25f6>
+            <div class="floating-pepes" data-astro-cid-j7pv25f6>
+                <div class="floating-pepe pepe-1" data-astro-cid-j7pv25f6>
+                    <img src="/images/pepe/happy-pepe.png" alt="Happy Pepe" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-pepe pepe-2" data-astro-cid-j7pv25f6>
+                    <img src="/images/pepe/cool-pepe.png" alt="Cool Pepe" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-pepe pepe-3" data-astro-cid-j7pv25f6>
+                    <img src="/images/pepe/smug-pepe.png" alt="Smug Pepe" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-pepe pepe-4" data-astro-cid-j7pv25f6>
+                    <img src="/images/pepe/sad-pepe.png" alt="Sad Pepe" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-pepe pepe-5" data-astro-cid-j7pv25f6>
+                    <img src="/images/pepe/pepe-pride.png" alt="Pride Pepe" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-pepe pepe-6" data-astro-cid-j7pv25f6>
+                    <img src="/images/pepe/crying-pepe.png" alt="Crying Pepe" data-astro-cid-j7pv25f6>
+                </div>
+            </div>
+            <div class="floating-tons" data-astro-cid-j7pv25f6>
+                <div class="floating-ton ton-1" data-astro-cid-j7pv25f6>
+                    <img src="/images/ton/ton-logo.svg" alt="TON Logo" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-ton ton-2" data-astro-cid-j7pv25f6>
+                    <img src="/images/ton/ton-logo.svg" alt="TON Logo" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-ton ton-3" data-astro-cid-j7pv25f6>
+                    <img src="/images/ton/ton-logo.svg" alt="TON Logo" data-astro-cid-j7pv25f6>
+                </div>
+                <div class="floating-ton ton-4" data-astro-cid-j7pv25f6>
+                    <img src="/images/ton/ton-logo.svg" alt="TON Logo" data-astro-cid-j7pv25f6>
+                </div>
+            </div>
+            <div class="hero-content" data-astro-cid-j7pv25f6>
+                <div class="hero-text" data-astro-cid-j7pv25f6>
+                    <h1 class="hero-title" data-astro-cid-j7pv25f6>
+                        <span class="title-line" data-astro-cid-j7pv25f6>$GREENE</span>
+                        <span class="title-subtitle" data-astro-cid-j7pv25f6>The Community Takeover 🐸🌱</span>
+                    </h1>
+                    <div class="hero-story" data-astro-cid-j7pv25f6>
+                        <p class="story-intro" data-astro-cid-j7pv25f6>
+                            Mr. Greene was the <strong data-astro-cid-j7pv25f6>first sticker pack on VK</strong>
+                            , Pavel Durov's first app.<br data-astro-cid-j7pv25f6>The roots of meme culture before Telegram existed.
+
+                        </p>
+                        <p class="story-finale" data-astro-cid-j7pv25f6>
+                            <strong data-astro-cid-j7pv25f6>Now we've taken control.</strong>
+                            <br data-astro-cid-j7pv25f6>
+                            The community is the team. No devs, no promises.<br data-astro-cid-j7pv25f6>Just pure degen energy and diamond hands.
+
+                        </p>
+                        <div class="story-path" data-astro-cid-j7pv25f6>
+                            <span class="path-highlight" data-astro-cid-j7pv25f6>👉 VK ➝ Telegram ➝ $GREENE</span>
+                            <br data-astro-cid-j7pv25f6>
+                            <span class="path-highlight" data-astro-cid-j7pv25f6>👉 Stickers ➝ Memes ➝ MOON 🚀</span>
+                        </div>
+                        <p class="resurrection-text" data-astro-cid-j7pv25f6>
+                            This is not a restart. It's a <strong data-astro-cid-j7pv25f6>resurrection</strong>
+                            .<br data-astro-cid-j7pv25f6>
+                            <span class="cta-text" data-astro-cid-j7pv25f6>Join the takeover. Become a millionaire. 💎</span>
+                        </p>
+                    </div>
+                    <div class="hero-buttons" data-astro-cid-j7pv25f6>
+                        <a href="https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt=EQDxWug7nXqaNd6rfkl8xRm-67qYr5nr8UuVnv9mg9_BSjII" target="_blank" class="btn btn-primary" data-astro-cid-j7pv25f6>Buy $GREENE</a>
+                        <a href="#about" class="btn btn-secondary" data-astro-cid-j7pv25f6>Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-astro-cid-j7pv25f6>
+                    <div class="main-pepe" data-astro-cid-j7pv25f6>
+                        <div class="pepe-crown" data-astro-cid-j7pv25f6>👑</div>
+                        <div class="pepe-face" data-astro-cid-j7pv25f6>
+                            <img src="/greene.webp" alt="Greene Pepe" class="main-greene-img" data-astro-cid-j7pv25f6>
+                        </div>
+                        <div class="pepe-glow" data-astro-cid-j7pv25f6></div>
+                    </div>
+                    <div class="real-stats-container" data-astro-cid-j7pv25f6>
+                        <div class="stat-item" data-astro-cid-j7pv25f6>
+                            <span class="stat-label" data-astro-cid-j7pv25f6>Total Supply</span>
+                            <span class="stat-value" data-astro-cid-j7pv25f6>343,000,001</span>
+                        </div>
+                        <div class="stat-item" data-astro-cid-j7pv25f6>
+                            <span class="stat-label" data-astro-cid-j7pv25f6>Burned</span>
+                            <span class="stat-value" data-astro-cid-j7pv25f6>65.7%</span>
+                        </div>
+                        <div class="stat-item" data-astro-cid-j7pv25f6>
+                            <span class="stat-label" data-astro-cid-j7pv25f6>Community</span>
+                            <span class="stat-value" data-astro-cid-j7pv25f6>100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="section" data-astro-cid-j7pv25f6>
+            <div class="container" data-astro-cid-j7pv25f6>
+                <h2 class="section-title" data-astro-cid-j7pv25f6>Why $GREENE?</h2>
+                <div class="features-grid" data-astro-cid-j7pv25f6>
+                    <div class="feature-card" data-astro-cid-j7pv25f6>
+                        <div class="feature-icon" data-astro-cid-j7pv25f6>
+                            <img src="/images/ton/ton-logo.svg" alt="TON" class="feature-ton-logo" data-astro-cid-j7pv25f6>
+                        </div>
+                        <h3 data-astro-cid-j7pv25f6>TON Speed</h3>
+                        <p data-astro-cid-j7pv25f6>Built on TON blockchain for lightning-fast transactions and minimal fees.</p>
+                    </div>
+                    <div class="feature-card" data-astro-cid-j7pv25f6>
+                        <div class="feature-icon" data-astro-cid-j7pv25f6>💎</div>
+                        <h3 data-astro-cid-j7pv25f6>Diamond Hands</h3>
+                        <p data-astro-cid-j7pv25f6>Strong community of holders who believe in the Greene revolution.</p>
+                    </div>
+                    <div class="feature-card" data-astro-cid-j7pv25f6>
+                        <div class="feature-icon" data-astro-cid-j7pv25f6>🐸</div>
+                        <h3 data-astro-cid-j7pv25f6>Pure Meme</h3>
+                        <p data-astro-cid-j7pv25f6>The ultimate Pepe variant designed specifically for the TON ecosystem.</p>
+                    </div>
+                    <div class="feature-card" data-astro-cid-j7pv25f6>
+                        <div class="feature-icon" data-astro-cid-j7pv25f6>🔥</div>
+                        <h3 data-astro-cid-j7pv25f6>Community Takeover</h3>
+                        <p data-astro-cid-j7pv25f6>100% community owned with 65.7% supply permanently burned.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="tokenomics" class="section dark-section" data-astro-cid-j7pv25f6>
+            <div class="container" data-astro-cid-j7pv25f6>
+                <h2 class="section-title" data-astro-cid-j7pv25f6>Tokenomics</h2>
+                <div class="tokenomics-content" data-astro-cid-j7pv25f6>
+                    <div class="tokenomics-chart" data-astro-cid-j7pv25f6>
+                        <div class="chart-container" data-astro-cid-j7pv25f6>
+                            <div class="pie-chart" data-astro-cid-j7pv25f6>
+                                <div class="slice slice-1" data-percent="40" data-astro-cid-j7pv25f6></div>
+                                <div class="slice slice-2" data-percent="30" data-astro-cid-j7pv25f6></div>
+                                <div class="slice slice-3" data-percent="20" data-astro-cid-j7pv25f6></div>
+                                <div class="slice slice-4" data-percent="10" data-astro-cid-j7pv25f6></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tokenomics-info" data-astro-cid-j7pv25f6>
+                        <div class="token-stat" data-astro-cid-j7pv25f6>
+                            <span class="stat-label" data-astro-cid-j7pv25f6>Total Supply</span>
+                            <span class="stat-value" data-astro-cid-j7pv25f6>343,000,001 $GREENE</span>
+                        </div>
+                        <div class="token-stat" data-astro-cid-j7pv25f6>
+                            <span class="stat-label" data-astro-cid-j7pv25f6>Burned Forever</span>
+                            <span class="stat-value" data-astro-cid-j7pv25f6>65.7%</span>
+                        </div>
+                        <div class="allocation-list" data-astro-cid-j7pv25f6>
+                            <div class="allocation-item" data-astro-cid-j7pv25f6>
+                                <div class="color-dot color-1" data-astro-cid-j7pv25f6></div>
+                                <span data-astro-cid-j7pv25f6>Community (100%)</span>
+                            </div>
+                            <div class="allocation-item" data-astro-cid-j7pv25f6>
+                                <div class="color-dot color-2" data-astro-cid-j7pv25f6></div>
+                                <span data-astro-cid-j7pv25f6>Burned (65.7%)</span>
+                            </div>
+                            <div class="allocation-item" data-astro-cid-j7pv25f6>
+                                <div class="color-dot color-3" data-astro-cid-j7pv25f6></div>
+                                <span data-astro-cid-j7pv25f6>Community Takeover</span>
+                            </div>
+                            <div class="allocation-item" data-astro-cid-j7pv25f6>
+                                <div class="color-dot color-4" data-astro-cid-j7pv25f6></div>
+                                <span data-astro-cid-j7pv25f6>No Team Allocation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="how-to-buy" class="section" data-astro-cid-j7pv25f6>
+            <div class="container" data-astro-cid-j7pv25f6>
+                <h2 class="section-title" data-astro-cid-j7pv25f6>How to Buy $GREENE</h2>
+                <p class="section-subtitle" data-astro-cid-j7pv25f6>Get your $GREENE tokens in 4 simple steps and join the TON Pepe revolution!</p>
+                <div class="steps-timeline" data-astro-cid-j7pv25f6>
+                    <div class="step-item" data-astro-cid-j7pv25f6>
+                        <div class="step-wrapper" data-astro-cid-j7pv25f6>
+                            <div class="step-icon" data-astro-cid-j7pv25f6>
+                                <div class="step-number" data-astro-cid-j7pv25f6>1</div>
+                            </div>
+                            <div class="step-connector" data-astro-cid-j7pv25f6></div>
+                        </div>
+                        <div class="step-details" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Get TON Wallet</h3>
+                            <p data-astro-cid-j7pv25f6>
+                                Download and set up a TON wallet like <strong data-astro-cid-j7pv25f6>Tonkeeper</strong>
+                                or <strong data-astro-cid-j7pv25f6>TON Wallet</strong>
+                                from your app store.
+                            </p>
+                            <div class="step-links" data-astro-cid-j7pv25f6>
+                                <a href="#" class="step-link" data-astro-cid-j7pv25f6>Tonkeeper →</a>
+                                <a href="#" class="step-link" data-astro-cid-j7pv25f6>TON Wallet →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-item" data-astro-cid-j7pv25f6>
+                        <div class="step-wrapper" data-astro-cid-j7pv25f6>
+                            <div class="step-icon" data-astro-cid-j7pv25f6>
+                                <div class="step-number" data-astro-cid-j7pv25f6>2</div>
+                            </div>
+                            <div class="step-connector" data-astro-cid-j7pv25f6></div>
+                        </div>
+                        <div class="step-details" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Buy TON</h3>
+                            <p data-astro-cid-j7pv25f6>
+                                Purchase TON from any major exchange like <strong data-astro-cid-j7pv25f6>Binance</strong>
+                                , <strong data-astro-cid-j7pv25f6>OKX</strong>
+                                , or <strong data-astro-cid-j7pv25f6>Bybit</strong>
+                                and send it to your wallet.
+                            </p>
+                            <div class="step-tip" data-astro-cid-j7pv25f6>
+                                <span data-astro-cid-j7pv25f6>💡 Tip: Buy a bit extra TON to cover transaction fees!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-item" data-astro-cid-j7pv25f6>
+                        <div class="step-wrapper" data-astro-cid-j7pv25f6>
+                            <div class="step-icon" data-astro-cid-j7pv25f6>
+                                <div class="step-number" data-astro-cid-j7pv25f6>3</div>
+                            </div>
+                            <div class="step-connector" data-astro-cid-j7pv25f6></div>
+                        </div>
+                        <div class="step-details" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Swap for $GREENE</h3>
+                            <p data-astro-cid-j7pv25f6>
+                                Go to <strong data-astro-cid-j7pv25f6>Ston.fi</strong>
+                                DEX, connect your wallet, and swap your TON for $GREENE tokens.
+                            </p>
+                            <a href="https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt=EQDxWug7nXqaNd6rfkl8xRm-67qYr5nr8UuVnv9mg9_BSjII" target="_blank" class="step-action-btn" data-astro-cid-j7pv25f6>Swap Now on Ston.fi
+</a>
+                        </div>
+                    </div>
+                    <div class="step-item" data-astro-cid-j7pv25f6>
+                        <div class="step-wrapper" data-astro-cid-j7pv25f6>
+                            <div class="step-icon" data-astro-cid-j7pv25f6>
+                                <div class="step-number" data-astro-cid-j7pv25f6>4</div>
+                            </div>
+                        </div>
+                        <div class="step-details" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>HODL & Meme</h3>
+                            <p data-astro-cid-j7pv25f6>Congratulations! You're now part of the Greene army. Hold your tokens and join our community!</p>
+                            <div class="step-celebration" data-astro-cid-j7pv25f6>
+                                <span class="celebration-text" data-astro-cid-j7pv25f6>🎉 Welcome to the Greene Army! 🐸</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buy-section" data-astro-cid-j7pv25f6>
+                    <div class="quick-buy" data-astro-cid-j7pv25f6>
+                        <h3 data-astro-cid-j7pv25f6>Quick Actions</h3>
+                        <div class="quick-buttons" data-astro-cid-j7pv25f6>
+                            <a href="https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt=EQDxWug7nXqaNd6rfkl8xRm-67qYr5nr8UuVnv9mg9_BSjII" target="_blank" class="btn btn-primary btn-large" data-astro-cid-j7pv25f6>🚀 Buy $GREENE Now
+</a>
+                            <a href="https://dexscreener.com/ton/eqbc9nmib3ed_5jbss5h_myr3eajonym5kytqwtdshxxbqp5" target="_blank" class="btn btn-secondary btn-large" data-astro-cid-j7pv25f6>📈 View Live Chart
+</a>
+                        </div>
+                    </div>
+                    <div class="contract-info" data-astro-cid-j7pv25f6>
+                        <h3 data-astro-cid-j7pv25f6>Contract Information</h3>
+                        <div class="contract-details" data-astro-cid-j7pv25f6>
+                            <div class="contract-item" data-astro-cid-j7pv25f6>
+                                <span class="contract-label" data-astro-cid-j7pv25f6>Contract Address:</span>
+                                <code class="contract-code" title="Click to copy" data-astro-cid-j7pv25f6>EQDxWug7nXqaNd6rfkl8xRm-67qYr5nr8UuVnv9mg9_BSjII</code>
+                            </div>
+                            <div class="contract-item" data-astro-cid-j7pv25f6>
+                                <span class="contract-label" data-astro-cid-j7pv25f6>Network:</span>
+                                <span class="contract-network" data-astro-cid-j7pv25f6>
+                                    <img src="/images/ton/ton-logo.svg" alt="TON" class="network-logo" data-astro-cid-j7pv25f6>TON Blockchain
+
+                                </span>
+                            </div>
+                            <div class="contract-item" data-astro-cid-j7pv25f6>
+                                <span class="contract-label" data-astro-cid-j7pv25f6>DEX:</span>
+                                <span class="contract-dex" data-astro-cid-j7pv25f6>Ston.fi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="roadmap" class="section dark-section" data-astro-cid-j7pv25f6>
+            <div class="container" data-astro-cid-j7pv25f6>
+                <h2 class="section-title" data-astro-cid-j7pv25f6>Roadmap</h2>
+                <div class="roadmap-container" data-astro-cid-j7pv25f6>
+                    <div class="roadmap-item completed" data-astro-cid-j7pv25f6>
+                        <div class="roadmap-dot" data-astro-cid-j7pv25f6></div>
+                        <div class="roadmap-content" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Phase 1: Launch</h3>
+                            <p data-astro-cid-j7pv25f6>Token creation, initial liquidity, website launch</p>
+                            <span class="phase-status" data-astro-cid-j7pv25f6>✅ COMPLETED</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-item active" data-astro-cid-j7pv25f6>
+                        <div class="roadmap-dot" data-astro-cid-j7pv25f6></div>
+                        <div class="roadmap-content" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Phase 2: Growth</h3>
+                            <p data-astro-cid-j7pv25f6>Community building, marketing campaigns, partnerships</p>
+                            <span class="phase-status" data-astro-cid-j7pv25f6>🔄 IN PROGRESS</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-item" data-astro-cid-j7pv25f6>
+                        <div class="roadmap-dot" data-astro-cid-j7pv25f6></div>
+                        <div class="roadmap-content" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Phase 3: Expansion</h3>
+                            <p data-astro-cid-j7pv25f6>CEX listings, NFT collection, staking rewards</p>
+                            <span class="phase-status" data-astro-cid-j7pv25f6>📅 UPCOMING</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-item" data-astro-cid-j7pv25f6>
+                        <div class="roadmap-dot" data-astro-cid-j7pv25f6></div>
+                        <div class="roadmap-content" data-astro-cid-j7pv25f6>
+                            <h3 data-astro-cid-j7pv25f6>Phase 4: Domination</h3>
+                            <p data-astro-cid-j7pv25f6>Global recognition, meme immortality, moon landing</p>
+                            <span class="phase-status" data-astro-cid-j7pv25f6>🚀 FUTURE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="community" class="section" data-astro-cid-j7pv25f6>
+            <div class="container" data-astro-cid-j7pv25f6>
+                <h2 class="section-title" data-astro-cid-j7pv25f6>Join the Greene Army</h2>
+                <div class="social-links" data-astro-cid-j7pv25f6>
+                    <a href="https://t.me/mrgreenecto" target="_blank" class="social-link telegram" data-astro-cid-j7pv25f6>
+                        <div class="social-icon" data-astro-cid-j7pv25f6>📱</div>
+                        <span data-astro-cid-j7pv25f6>Telegram</span>
+                    </a>
+                    <a href="https://x.com/mrgreenecto?s=21" target="_blank" class="social-link twitter" data-astro-cid-j7pv25f6>
+                        <div class="social-icon" data-astro-cid-j7pv25f6>🐦</div>
+                        <span data-astro-cid-j7pv25f6>Twitter</span>
+                    </a>
+                    <a href="https://dexscreener.com/ton/eqbc9nmib3ed_5jbss5h_myr3eajonym5kytqwtdshxxbqp5" target="_blank" class="social-link dexscreener" data-astro-cid-j7pv25f6>
+                        <div class="social-icon" data-astro-cid-j7pv25f6>📊</div>
+                        <span data-astro-cid-j7pv25f6>Chart</span>
+                    </a>
+                </div>
+                <div class="community-message" data-astro-cid-j7pv25f6>
+                    <h3 data-astro-cid-j7pv25f6>🚀 Join the Greene Revolution!</h3>
+                    <p data-astro-cid-j7pv25f6>Follow us on Twitter and join our Telegram group to stay updated with the latest $GREENE news, memes, and community events!</p>
+                </div>
+            </div>
+        </section>
+        <footer class="footer" data-astro-cid-j7pv25f6>
+            <div class="container" data-astro-cid-j7pv25f6>
+                <div class="footer-content" data-astro-cid-j7pv25f6>
+                    <div class="footer-brand" data-astro-cid-j7pv25f6>
+                        <span class="footer-logo" data-astro-cid-j7pv25f6>$GREENE</span>
+                        <p data-astro-cid-j7pv25f6>The ultimate TON Pepe meme token</p>
+                    </div>
+                    <div class="footer-links" data-astro-cid-j7pv25f6>
+                        <div class="footer-section" data-astro-cid-j7pv25f6>
+                            <h4 data-astro-cid-j7pv25f6>Links</h4>
+                            <a href="#about" data-astro-cid-j7pv25f6>About</a>
+                            <a href="#tokenomics" data-astro-cid-j7pv25f6>Tokenomics</a>
+                            <a href="#how-to-buy" data-astro-cid-j7pv25f6>How to Buy</a>
+                            <a href="#roadmap" data-astro-cid-j7pv25f6>Roadmap</a>
+                        </div>
+                        <div class="footer-section" data-astro-cid-j7pv25f6>
+                            <h4 data-astro-cid-j7pv25f6>Community</h4>
+                            <a href="https://t.me/mrgreenecto" target="_blank" data-astro-cid-j7pv25f6>Telegram</a>
+                            <a href="https://x.com/mrgreenecto?s=21" target="_blank" data-astro-cid-j7pv25f6>Twitter</a>
+                            <a href="https://dexscreener.com/ton/eqbc9nmib3ed_5jbss5h_myr3eajonym5kytqwtdshxxbqp5" target="_blank" data-astro-cid-j7pv25f6>Chart</a>
+                            <a href="https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt=EQDxWug7nXqaNd6rfkl8xRm-67qYr5nr8UuVnv9mg9_BSjII" target="_blank" data-astro-cid-j7pv25f6>Buy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom" data-astro-cid-j7pv25f6>
+                    <p data-astro-cid-j7pv25f6>&copy;2024 $GREENE. All rights reserved. | This is a meme token for entertainment purposes.</p>
+                </div>
+            </div>
+        </footer>
+        <script type="module" src="/_astro/index.astro_astro_type_script_index_1_lang.aS3FX-_H.js"></script>
+    </body>
+</html>
