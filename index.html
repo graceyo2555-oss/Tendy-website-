@@ -9,6 +9,17 @@
   <meta property="og:description" content="One of the original Telegram sticker icons, now brought to life on TON!" />
   <meta property="og:type" content="website" />
   <meta property="theme-color" content="#0EA5E9" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/gif" href="https://i.ibb.co/wmCNbGL/IMG-20251017-073832-505.gif">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/6tJBLpZ/IMG-20251017-073832-505.png">
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/6tJBLpZ/IMG-20251017-073832-505.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://i.ibb.co/6tJBLpZ/IMG-20251017-073832-505.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://i.ibb.co/6tJBLpZ/IMG-20251017-073832-505.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://i.ibb.co/6tJBLpZ/IMG-20251017-073832-505.png">
+
   <style>
     :root {--bg1:#020617;--bg2:#0b1220;--toneon:#e2f4ff;--muted:#9fb6c9;
       --accent1:#0ea5e9;--accent2:#06b6d4;--good:#10b981;--bad:#ef4444;
@@ -21,8 +32,8 @@
     header{position:sticky;top:0;background:#0b1220e6;border-bottom:1px solid #0f1c2a;
       display:flex;justify-content:space-between;align-items:center;padding:10px 0;backdrop-filter:saturate(140%) blur(8px)}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:48px;height:48px;border-radius:50%;background:conic-gradient(from 200deg,var(--accent1),var(--accent2));display:grid;place-items:center;box-shadow:var(--shadow)}
-    .logo::after{content:"🐯";font-size:26px}
+    .logo{width:48px;height:48px;border-radius:50%;overflow:hidden;box-shadow:var(--shadow)}
+    .logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
     .title b{font-size:18px}
     .cta-row{display:flex;gap:8px;flex-wrap:wrap}
     .btn{padding:10px 14px;border-radius:999px;background:#0c1726;border:1px solid #14314a;font-weight:600}
@@ -42,11 +53,11 @@
     .sm{color:#b7cee0;font-size:14px}
     .faq .q{cursor:pointer;user-select:none;padding:12px;border:1px solid var(--border);border-radius:12px;background:#071a2b;margin-bottom:10px}
     .faq .a{display:none;padding:10px 12px;color:#cfe7ff;border-left:2px solid var(--accent2);margin:-6px 0 10px 6px}
-    .stickers{position:relative;overflow:hidden;border-radius:16px;min-height:220px;display:grid;place-items:center;text-align:center;padding:14px;
+    .stickers{position:relative;overflow:hidden;border-radius:16px;min-height:300px;display:grid;place-items:center;text-align:center;padding:14px;
       background: radial-gradient(800px 220px at 50% -20%, #0d2742 0%, transparent 60%), linear-gradient(180deg,#061222,#080f19);
       border: 1px solid #102a41;}
-    .floaters span{position:absolute;top:-60px;font-size:28px;opacity:.5;pointer-events:none;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4));animation:drift linear infinite}
-    @keyframes drift{from{transform:translateY(-60px) rotate(0)} to{transform:translateY(120vh) rotate(40deg)}}
+    .floaters img{position:absolute;top:-100px;width:64px;height:auto;opacity:.9;pointer-events:none;animation:drift linear infinite}
+    @keyframes drift{from{transform:translateY(-100px) rotate(0deg);}to{transform:translateY(110vh) rotate(30deg);}}
     footer{margin:38px 0 22px;color:#7ea3bf;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap}
   </style>
 </head>
@@ -54,7 +65,7 @@
 <div class="wrap">
   <header>
     <div class="brand">
-      <div class="logo"></div>
+      <div class="logo" id="siteLogo"></div>
       <div class="title"><b>Tendy Tiger ($TENDY)</b><br><span class="mini">On The Open Network</span></div>
     </div>
     <nav class="cta-row">
@@ -99,7 +110,7 @@
     <div class="floaters" id="floaters"></div>
     <div>
       <h3 class="h3">Sticker Vibes</h3>
-      <p class="sm">Floating Telegram-style emojis for fun vibes — later replace with custom Tendy art or sticker sprites.</p>
+      <p class="sm">Tendy-themed GIFs falling down for meme vibes — later you can swap in more official sticker sprites.</p>
     </div>
   </section>
 
@@ -129,26 +140,45 @@
 </div>
 
 <script>
+  /* ===== Settings ===== */
   const TOKEN_ADDRESS = "EQAUaXNNIGnCq96R6NDZBCZxC0TyFyVmwZozuiNhFTzBeC7R";
-  const GT_POOL_ID    = "EQB5lLqtPjYZGxYh5iPR6Vzhm1izVlAttQF6MDLFUDnEq2XB";
+  const GT_POOL_ID    = "EQB5lLqtPjYZGxYh5iPR6Vzhm1izVlAttQF6MDLFUDnEq2XB"; // your pool id
   const TELEGRAM_URL  = "https://t.me/your_tendy_channel";
   const X_URL         = "https://x.com/your_tendy";
 
+  // Links (using the GeckoTerminal chart link you provided)
   const TONVIEWER_URL = `https://tonviewer.com/jetton/${TOKEN_ADDRESS}`;
   const GT_POOL_URL   = "https://www.geckoterminal.com/ton/pools/EQAUaXNNIGnCq96R6NDZBCZxC0TyFyVmwZozuiNhFTzBeC7R";
   const BUY_URL       = GT_POOL_URL;
   const CHART_URL     = GT_POOL_URL;
 
+  // Wire links
   document.getElementById("chartLink").href = CHART_URL;
   document.getElementById("buyLink").href   = BUY_URL;
   document.getElementById("tgLink").href    = TELEGRAM_URL;
   document.getElementById("xLink").href     = X_URL;
   document.getElementById("viewLink").href  = TONVIEWER_URL;
 
+  // Contract display + copy
   document.getElementById("shortAddr").textContent = TOKEN_ADDRESS.slice(0,8)+"…"+TOKEN_ADDRESS.slice(-6);
-  document.getElementById("copyBtn").onclick = async () => {await navigator.clipboard.writeText(TOKEN_ADDRESS);alert("Copied!");};
+  document.getElementById("copyBtn").onclick = async () => {
+    try { await navigator.clipboard.writeText(TOKEN_ADDRESS);
+      const b=document.getElementById("copyBtn"); const t=b.textContent; b.textContent="Copied!"; setTimeout(()=>b.textContent=t,1200);
+    } catch { alert("Copy failed. Long-press to copy:\n"+TOKEN_ADDRESS); }
+  };
+
+  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // Fixed GIF Logo
+  const LOGO_GIF_URL = "https://i.ibb.co/wmCNbGL/IMG-20251017-073832-505.gif";
+  (function setGifLogo(){
+    const el = document.getElementById("siteLogo");
+    if(!el) return;
+    el.innerHTML = `<img src="${LOGO_GIF_URL}" alt="Tendy Tiger logo">`;
+  })();
+
+  /* ===== GeckoTerminal price (pool endpoint only) ===== */
   const priceEl=document.getElementById("priceUsd"),
         chgEl=document.getElementById("change24h"),
         liqEl=document.getElementById("liquidity"),
@@ -156,49 +186,89 @@
         refreshBtn=document.getElementById("refreshBtn"),
         statusEl=document.getElementById("priceStatus");
 
-  function fmtUSD(n){const x=Number(n);if(!isFinite(x))return"–";if(x>=1)return"$"+x.toLocaleString(undefined,{maximumFractionDigits:4});if(x>=0.01)return"$"+x.toLocaleString(undefined,{maximumFractionDigits:6});return"$"+x.toExponential(2);}
-  function fmtNum(n){const x=Number(n);if(!isFinite(x))return"–";if(x>=1e9)return(x/1e9).toFixed(2)+"B";if(x>=1e6)return(x/1e6).toFixed(2)+"M";if(x>=1e3)return(x/1e3).toFixed(2)+"k";return x.toFixed(0);}
-  function setChange(v){const x=Number(v);if(!isFinite(x)){chgEl.textContent="–";chgEl.className="chg";return;}chgEl.textContent=(x>0?"+":"")+x.toFixed(2)+"%";chgEl.className="chg "+(x>=0?"up":"down");}
+  function fmtUSD(n){const x=Number(n);if(!isFinite(x))return"–";
+    if(x>=1)return"$"+x.toLocaleString(undefined,{maximumFractionDigits:4});
+    if(x>=0.01)return"$"+x.toLocaleString(undefined,{maximumFractionDigits:6});
+    return"$"+x.toExponential(2);
+  }
+  function fmtNum(n){const x=Number(n);if(!isFinite(x))return"–";
+    if(x>=1e9)return(x/1e9).toFixed(2)+"B";
+    if(x>=1e6)return(x/1e6).toFixed(2)+"M";
+    if(x>=1e3)return(x/1e3).toFixed(2)+"k";
+    return x.toFixed(0);
+  }
+  function setChange(v){
+    const x=Number(v);
+    if(!isFinite(x)){ chgEl.textContent="–"; chgEl.className="chg"; return; }
+    chgEl.textContent=(x>0?"+":"")+x.toFixed(2)+"%";
+    chgEl.className="chg "+(x>=0?"up":"down");
+  }
 
   async function gtFetchPool(poolId){
     const url=`https://api.geckoterminal.com/api/v2/networks/ton/pools/${encodeURIComponent(poolId)}`;
-    const res=await fetch(url,{cache:"no-store"});if(!res.ok)throw new Error("GT pool "+res.status);
+    const res=await fetch(url,{cache:"no-store"});
+    if(!res.ok) throw new Error("GT pool "+res.status);
     const a=(await res.json())?.data?.attributes||{};
-    return {priceUsd:+a.price_in_usd,change24h:+a.price_change_percentage?.["24h"],liquidity:+a.reserve_in_usd,fdv:+a.fdv_usd};
+    return {
+      priceUsd:+a.price_in_usd,
+      change24h:+(a.price_change_percentage?.["24h"]),
+      liquidity:+a.reserve_in_usd,
+      fdv:+a.fdv_usd
+    };
   }
 
   async function loadPrice(){
-    refreshBtn.disabled=true;statusEl.textContent="Fetching from GeckoTerminal…";
+    refreshBtn.disabled=true; statusEl.textContent="Fetching from GeckoTerminal…";
     try{
       const d=await gtFetchPool(GT_POOL_ID);
-      priceEl.textContent=fmtUSD(d.priceUsd);setChange(d.change24h);
-      liqEl.textContent="$"+fmtNum(d.liquidity);fdvEl.textContent=d.fdv?"$"+fmtNum(d.fdv):"–";
+      priceEl.textContent=fmtUSD(d.priceUsd);
+      setChange(d.change24h);
+      liqEl.textContent="$"+fmtNum(d.liquidity);
+      fdvEl.textContent=d.fdv?"$"+fmtNum(d.fdv):"–";
       statusEl.textContent="Live from GeckoTerminal.";
-    }catch{
-      priceEl.textContent="–";chgEl.textContent="–";liqEl.textContent="–";fdvEl.textContent="–";
+    }catch(e){
+      priceEl.textContent="–"; chgEl.textContent="–"; chgEl.className="chg";
+      liqEl.textContent="–"; fdvEl.textContent="–";
       statusEl.textContent="Couldn’t load GeckoTerminal. Check the pool id.";
     }
     refreshBtn.disabled=false;
   }
   document.getElementById("refreshBtn").onclick=loadPrice;
-  loadPrice();setInterval(loadPrice,60000);
+  loadPrice();
+  setInterval(loadPrice, 60_000);
 
   // FAQ toggles
   document.querySelectorAll(".faq .q").forEach(q=>q.addEventListener("click",()=>{
-    const a=q.nextElementSibling;const show=a.style.display!=="block";
+    const a=q.nextElementSibling; const show=a.style.display!=="block";
     document.querySelectorAll(".faq .a").forEach(x=>x.style.display="none");
     a.style.display=show?"block":"none";
   }));
 
-  // Floaters
-  const icons=["🐯","🧸","🍒","🐥","🐸","💐","⭐","🧩"];
+  // Falling GIFs in Sticker Vibes
+  const gifs=[
+    "https://i.ibb.co/Cpy28WtF/IMG-20251017-074433-150.gif",
+    "https://i.ibb.co/LhqDs1Jz/IMG-20251017-074402-961.gif",
+    "https://i.ibb.co/CKsTMWGj/IMG-20251017-074334-460.gif",
+    "https://i.ibb.co/PZDcWyX8/IMG-20251017-073942-980.gif",
+    "https://i.ibb.co/Mxm7p9hz/IMG-20251017-073926-116.gif",
+    "https://i.ibb.co/bMPpNFcF/IMG-20251017-073901-767.gif",
+    "https://i.ibb.co/Z6GGfjBW/IMG-20251017-073848-300.gif",
+    "https://i.ibb.co/wmCNbGL/IMG-20251017-073832-505.gif"
+  ];
   const floaters=document.getElementById("floaters");
-  function addFloater(i){const s=document.createElement("span");s.textContent=icons[i%icons.length];
-    s.style.left=Math.random()*100+"vw";const dur=10+Math.random()*16,del=Math.random()*-16;
-    s.style.animationDuration=dur+"s";s.style.animationDelay=del+"s";
-    floaters.appendChild(s);setTimeout(()=>s.remove(),(dur+1)*1000);}
-  for(let i=0;i<12;i++) addFloater(i);
-  setInterval(()=>addFloater(Math.floor(Math.random()*icons.length)),700);
+  function addGif(){
+    const img=document.createElement("img");
+    img.src=gifs[Math.floor(Math.random()*gifs.length)];
+    img.style.left=Math.random()*100+"vw";
+    const dur=12+Math.random()*12, del=Math.random()*-20;
+    img.style.animationDuration=dur+"s";
+    img.style.animationDelay=del+"s";
+    img.style.width=(40+Math.random()*50)+"px";
+    floaters.appendChild(img);
+    setTimeout(()=>img.remove(), (dur+2)*1000);
+  }
+  for(let i=0;i<10;i++) addGif();
+  setInterval(addGif, 1000);
 </script>
 </body>
 </html>
