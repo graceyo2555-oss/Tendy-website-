@@ -33,12 +33,12 @@
       display:flex;justify-content:space-between;align-items:center;padding:10px 0;backdrop-filter:saturate(140%) blur(8px)}
     .brand{display:flex;gap:12px;align-items:center}
     .logo{width:48px;height:48px;border-radius:50%;overflow:hidden;box-shadow:var(--shadow)}
-    .logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+    .logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;animation:pulseGlowLogo 3s ease-in-out infinite}
     .title b{font-size:18px}
     .cta-row{display:flex;gap:8px;flex-wrap:wrap}
     .btn{padding:10px 14px;border-radius:999px;background:#0c1726;border:1px solid #14314a;font-weight:600}
     .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#001019;border-color:transparent}
-    .card{background:linear-gradient(160deg,var(--card),#0a1625cc 60%,#08121f);border:1px solid #10253a;border-radius:var(--radius);padding:18px;margin-top:18px}
+    .card{background:linear-gradient(160deg,#0a1625,#0a1625cc 60%,#08121f);border:1px solid #10253a;border-radius:var(--radius);padding:18px;margin-top:18px}
     .big{font-size:clamp(28px,4.2vw,44px);margin:4px 0 8px}
     .lead{color:#c0d9ee}
     .pricepill{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:10px 12px}
@@ -58,6 +58,10 @@
       border: 1px solid #102a41;}
     .floaters img{position:absolute;top:-100px;width:64px;height:auto;opacity:.9;pointer-events:none;animation:drift linear infinite}
     @keyframes drift{from{transform:translateY(-100px) rotate(0deg);}to{transform:translateY(110vh) rotate(30deg);}}
+    .happy-toys-gif{max-width:260px;border-radius:18px;margin:14px auto;display:block;
+      box-shadow:0 0 20px rgba(14,165,233,0.7),0 0 40px rgba(6,182,212,0.5);animation:pulseGlow 3s ease-in-out infinite}
+    @keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(14,165,233,0.6),0 0 40px rgba(6,182,212,0.4)}50%{box-shadow:0 0 35px rgba(14,165,233,0.9),0 0 70px rgba(6,182,212,0.7)}}
+    @keyframes pulseGlowLogo{0%,100%{box-shadow:0 0 14px rgba(14,165,233,0.6),0 0 26px rgba(6,182,212,0.4)}50%{box-shadow:0 0 26px rgba(14,165,233,0.9),0 0 50px rgba(6,182,212,0.7)}}
     footer{margin:38px 0 22px;color:#7ea3bf;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap}
   </style>
 </head>
@@ -108,10 +112,17 @@
   <!-- Sticker vibes -->
   <section class="card stickers">
     <div class="floaters" id="floaters"></div>
-    <div>
-      <h3 class="h3">Sticker Vibes</h3>
-      <p class="sm">Tendy-themed GIFs falling down for meme vibes — later you can swap in more official sticker sprites.</p>
-    </div>
+    <div><h3 class="h3">Sticker Vibes</h3></div>
+  </section>
+
+  <!-- Happy Toys section -->
+  <section class="card">
+    <h3 class="h3"><b>Happy Toys</b></h3>
+    <img src="https://i.ibb.co/CKsTMWGj/IMG-20251017-074334-460.gif" alt="Happy Toys GIF" class="happy-toys-gif">
+    <p class="sm" style="text-align:center;max-width:700px;margin:10px auto 0;">
+      The <b>Happy Toys</b> collectible — a limited Telegram gift version of the “Lush Bouquet” 💐 pack,
+      where Tendy Tiger appears alongside Utya, Cherry, and Fromg. A true piece of Telegram sticker history.
+    </p>
   </section>
 
   <!-- FAQ -->
@@ -142,11 +153,10 @@
 <script>
   /* ===== Settings ===== */
   const TOKEN_ADDRESS = "EQAUaXNNIGnCq96R6NDZBCZxC0TyFyVmwZozuiNhFTzBeC7R";
-  const GT_POOL_ID    = "EQB5lLqtPjYZGxYh5iPR6Vzhm1izVlAttQF6MDLFUDnEq2XB"; // your pool id
+  const GT_POOL_ID    = "EQB5lLqtPjYZGxYh5iPR6Vzhm1izVlAttQF6MDLFUDnEq2XB";
   const TELEGRAM_URL  = "https://t.me/your_tendy_channel";
   const X_URL         = "https://x.com/your_tendy";
 
-  // Links (using the GeckoTerminal chart link you provided)
   const TONVIEWER_URL = `https://tonviewer.com/jetton/${TOKEN_ADDRESS}`;
   const GT_POOL_URL   = "https://www.geckoterminal.com/ton/pools/EQAUaXNNIGnCq96R6NDZBCZxC0TyFyVmwZozuiNhFTzBeC7R";
   const BUY_URL       = GT_POOL_URL;
@@ -166,19 +176,16 @@
       const b=document.getElementById("copyBtn"); const t=b.textContent; b.textContent="Copied!"; setTimeout(()=>b.textContent=t,1200);
     } catch { alert("Copy failed. Long-press to copy:\n"+TOKEN_ADDRESS); }
   };
-
-  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
 
   // Fixed GIF Logo
-  const LOGO_GIF_URL = "https://i.ibb.co/wmCNbGL/IMG-20251017-073832-505.gif";
   (function setGifLogo(){
     const el = document.getElementById("siteLogo");
     if(!el) return;
-    el.innerHTML = `<img src="${LOGO_GIF_URL}" alt="Tendy Tiger logo">`;
+    el.innerHTML = `<img src="https://i.ibb.co/wmCNbGL/IMG-20251017-073832-505.gif" alt="Tendy Tiger logo">`;
   })();
 
-  /* ===== GeckoTerminal price (pool endpoint only) ===== */
+  /* ===== GeckoTerminal price (pool endpoint) ===== */
   const priceEl=document.getElementById("priceUsd"),
         chgEl=document.getElementById("change24h"),
         liqEl=document.getElementById("liquidity"),
@@ -203,20 +210,13 @@
     chgEl.textContent=(x>0?"+":"")+x.toFixed(2)+"%";
     chgEl.className="chg "+(x>=0?"up":"down");
   }
-
   async function gtFetchPool(poolId){
     const url=`https://api.geckoterminal.com/api/v2/networks/ton/pools/${encodeURIComponent(poolId)}`;
     const res=await fetch(url,{cache:"no-store"});
     if(!res.ok) throw new Error("GT pool "+res.status);
     const a=(await res.json())?.data?.attributes||{};
-    return {
-      priceUsd:+a.price_in_usd,
-      change24h:+(a.price_change_percentage?.["24h"]),
-      liquidity:+a.reserve_in_usd,
-      fdv:+a.fdv_usd
-    };
+    return {priceUsd:+a.price_in_usd,change24h:+(a.price_change_percentage?.["24h"]),liquidity:+a.reserve_in_usd,fdv:+a.fdv_usd};
   }
-
   async function loadPrice(){
     refreshBtn.disabled=true; statusEl.textContent="Fetching from GeckoTerminal…";
     try{
@@ -224,7 +224,7 @@
       priceEl.textContent=fmtUSD(d.priceUsd);
       setChange(d.change24h);
       liqEl.textContent="$"+fmtNum(d.liquidity);
-      fdvEl.textContent=d.fdv?"$"+fmtNum(d.fdv):"–";
+      fdvEl.textContent=d.fdv?("$"+fmtNum(d.fdv)):"–";
       statusEl.textContent="Live from GeckoTerminal.";
     }catch(e){
       priceEl.textContent="–"; chgEl.textContent="–"; chgEl.className="chg";
@@ -235,14 +235,16 @@
   }
   document.getElementById("refreshBtn").onclick=loadPrice;
   loadPrice();
-  setInterval(loadPrice, 60_000);
+  setInterval(loadPrice, 60000);
 
   // FAQ toggles
-  document.querySelectorAll(".faq .q").forEach(q=>q.addEventListener("click",()=>{
-    const a=q.nextElementSibling; const show=a.style.display!=="block";
-    document.querySelectorAll(".faq .a").forEach(x=>x.style.display="none");
-    a.style.display=show?"block":"none";
-  }));
+  document.querySelectorAll(".faq .q").forEach(q=>{
+    q.addEventListener("click",()=>{
+      const a=q.nextElementSibling, show=a.style.display!=="block";
+      document.querySelectorAll(".faq .a").forEach(x=>x.style.display="none");
+      a.style.display=show?"block":"none";
+    });
+  });
 
   // Falling GIFs in Sticker Vibes
   const gifs=[
