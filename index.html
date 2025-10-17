@@ -62,6 +62,7 @@
       box-shadow:0 0 20px rgba(14,165,233,0.7),0 0 40px rgba(6,182,212,0.5);animation:pulseGlow 3s ease-in-out infinite}
     @keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(14,165,233,0.6),0 0 40px rgba(6,182,212,0.4)}50%{box-shadow:0 0 35px rgba(14,165,233,0.9),0 0 70px rgba(6,182,212,0.7)}}
     @keyframes pulseGlowLogo{0%,100%{box-shadow:0 0 14px rgba(14,165,233,0.6),0 0 26px rgba(6,182,212,0.4)}50%{box-shadow:0 0 26px rgba(14,165,233,0.9),0 0 50px rgba(6,182,212,0.7)}}
+    .inline-emoji{image-rendering:auto;}
     footer{margin:38px 0 22px;color:#7ea3bf;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap}
   </style>
 </head>
@@ -140,7 +141,7 @@
     <p class="sm">
       Tendy Tiger is one of the original Telegram sticker packs! A true collectible from Telegram’s early creative era, now brought to life on TON!
       Alongside icons like Utya, Cherry, and Fromg, Tendy Tiger holds official status within Telegram culture.
-      It’s also featured with them in the limited “Happy Toys” version of the “Lush Bouquet” Telegram gift — a nod to its place among Telegram’s most recognized characters.
+      It’s also featured with them in the limited “Happy Toys” version of the “Lush Bouquet” 💐 Telegram gift — a nod to its place among Telegram’s most recognized characters.
     </p>
   </section>
 
@@ -193,15 +194,17 @@
         refreshBtn=document.getElementById("refreshBtn"),
         statusEl=document.getElementById("priceStatus");
 
-  function fmtUSD(n){const x=Number(n);if(!isFinite(x))return"–";
-    if(x>=1)return"$"+x.toLocaleString(undefined,{maximumFractionDigits:4});
-    if(x>=0.01)return"$"+x.toLocaleString(undefined,{maximumFractionDigits:6});
-    return"$"+x.toExponential(2);
+  function fmtUSD(n){
+    const x=Number(n); if(!isFinite(x)) return "–";
+    if(x>=1) return "$"+x.toLocaleString(undefined,{maximumFractionDigits:4});
+    if(x>=0.01) return "$"+x.toLocaleString(undefined,{maximumFractionDigits:6});
+    return "$"+x.toExponential(2);
   }
-  function fmtNum(n){const x=Number(n);if(!isFinite(x))return"–";
-    if(x>=1e9)return(x/1e9).toFixed(2)+"B";
-    if(x>=1e6)return(x/1e6).toFixed(2)+"M";
-    if(x>=1e3)return(x/1e3).toFixed(2)+"k";
+  function fmtNum(n){
+    const x=Number(n); if(!isFinite(x)) return "–";
+    if(x>=1e9) return (x/1e9).toFixed(2)+"B";
+    if(x>=1e6) return (x/1e6).toFixed(2)+"M";
+    if(x>=1e3) return (x/1e3).toFixed(2)+"k";
     return x.toFixed(0);
   }
   function setChange(v){
@@ -215,7 +218,12 @@
     const res=await fetch(url,{cache:"no-store"});
     if(!res.ok) throw new Error("GT pool "+res.status);
     const a=(await res.json())?.data?.attributes||{};
-    return {priceUsd:+a.price_in_usd,change24h:+(a.price_change_percentage?.["24h"]),liquidity:+a.reserve_in_usd,fdv:+a.fdv_usd};
+    return {
+      priceUsd:+a.price_in_usd,
+      change24h:+(a.price_change_percentage?.["24h"]),
+      liquidity:+a.reserve_in_usd,
+      fdv:+a.fdv_usd
+    };
   }
   async function loadPrice(){
     refreshBtn.disabled=true; statusEl.textContent="Fetching from GeckoTerminal…";
@@ -271,6 +279,54 @@
   }
   for(let i=0;i<10;i++) addGif();
   setInterval(addGif, 1000);
+
+  /* ===== Auto-emoji replacements (Tendy + 💐) ===== */
+  (function emojifyOnce(){
+    if (document.body.dataset.tendyEmojified === "1") return;
+    document.body.dataset.tendyEmojified = "1";
+
+    const TENDY_GIF = "https://i.ibb.co/wmCNbGL/IMG-20251017-073832-505.gif";
+    const HAPPY_GIF = "https://i.ibb.co/CKsTMWGj/IMG-20251017-074334-460.gif";
+
+    function makeImg(src, {round=false, size=20, alt=""}={}){
+      const img = document.createElement("img");
+      img.src = src; img.alt = alt; img.loading = "lazy"; img.decoding = "async";
+      img.style.height = size + "px"; img.style.verticalAlign = "middle";
+      img.style.borderRadius = round ? "50%" : "6px";
+      img.className = "inline-emoji"; img.setAttribute("data-auto-emoji","1");
+      return img;
+    }
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node){
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p = node.parentElement; if (!p) return NodeFilter.FILTER_SKIP;
+        if (p.closest("script,style,noscript")) return NodeFilter.FILTER_REJECT;
+        return (node.nodeValue.includes("Tendy") || node.nodeValue.includes("💐"))
+          ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+
+    const nodes=[]; while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    for (const textNode of nodes){
+      const text = textNode.nodeValue;
+      const parts = text.split(/(Tendy)|(\u{1F490})/u); // keep matches
+      if (parts.length === 1) continue;
+      const frag = document.createDocumentFragment();
+      for (const part of parts){
+        if (!part) continue;
+        if (part === "Tendy"){
+          frag.appendChild(makeImg(TENDY_GIF,{round:true,size:20,alt:"Tendy"}));
+        } else if (part === "💐"){
+          frag.appendChild(makeImg(HAPPY_GIF,{round:false,size:22,alt:"Happy Toys"}));
+        } else {
+          frag.appendChild(document.createTextNode(part));
+        }
+      }
+      textNode.parentNode.replaceChild(frag, textNode);
+    }
+  })();
 </script>
 </body>
 </html>
