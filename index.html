@@ -12,42 +12,69 @@
   <style>
     :root {
       --bg1:#020617;--bg2:#0b1220;--toneon:#e2f4ff;--muted:#9fb6c9;
-      --accent1:#0ea5e9;--accent2:#06b6d4;--good:#10b981;--bad:#ef4444;--radius:16px;
+      --accent1:#0ea5e9;--accent2:#06b6d4;--good:#10b981;--bad:#ef4444;--radius:18px;
+      --border:#123149;--card:#0a1625;--card2:#08192a;--shadow:0 10px 30px rgba(0,0,0,.45);
     }
-    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
-      background:radial-gradient(1200px 600px at 10% -10%, #0b1b2e 0%, transparent 60%),
-                 radial-gradient(900px 500px at 110% 10%, #072033 0%, transparent 55%),
-                 linear-gradient(180deg,var(--bg1),var(--bg2)); color:var(--toneon);}
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #0b1b2e 0%, transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, #072033 0%, transparent 55%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--toneon);
+    }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:960px;margin:auto;padding:18px}
-    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;position:sticky;top:0;
-      background:#0b1220e6;border-bottom:1px solid #0f1c2a;backdrop-filter:saturate(140%) blur(8px)}
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    header{
+      position:sticky;top:0;z-index:20;background:#0b1220e6;
+      border-bottom:1px solid #0f1c2a;backdrop-filter:saturate(140%) blur(8px);
+      display:flex;justify-content:space-between;align-items:center;padding:10px 0
+    }
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:50%;background:conic-gradient(from 200deg,var(--accent1),var(--accent2));
-      display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-    .logo::after{content:"🐯";font-size:24px}
-    .title b{font-size:18px}
+    .logo{width:48px;height:48px;border-radius:50%;
+      background:conic-gradient(from 200deg,var(--accent1),var(--accent2));display:grid;place-items:center;box-shadow:var(--shadow)}
+    .logo::after{content:"🐯";font-size:26px}
+    .title b{font-size:18px;letter-spacing:.2px}
     .cta-row{display:flex;gap:8px;flex-wrap:wrap}
-    .btn{padding:9px 13px;border-radius:999px;background:#0c1726;border:1px solid #14314a;font-weight:600}
+    .btn{padding:10px 14px;border-radius:999px;background:#0c1726;border:1px solid #14314a;font-weight:600;transition:transform .06s}
+    .btn:hover{transform:translateY(-1px)}
     .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#001019;border-color:transparent}
-    .card{background:linear-gradient(160deg,#0a1625,#0a1625cc 60%,#08121f);border:1px solid #10253a;border-radius:var(--radius);padding:18px;margin-top:18px}
-    .big{font-size:30px;margin:0 0 8px}
+    .card{background:linear-gradient(160deg,var(--card),#0a1625cc 60%,#08121f);
+      border:1px solid #10253a;border-radius:var(--radius);padding:18px;margin-top:18px}
+    .big{font-size:clamp(28px,4.2vw,44px);margin:4px 0 8px}
     .lead{color:#c0d9ee}
-    .pricepill{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;background:#08192a;border:1px solid #123149;border-radius:999px;padding:10px 12px}
-    .kv{background:#0b1c2f;padding:4px 10px;border-radius:999px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .pricepill{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;background:var(--card2);
+      border:1px solid var(--border);border-radius:999px;padding:10px 12px}
+    .kv{background:#0b1c2f;padding:6px 12px;border-radius:999px}
     .chg.up{color:var(--good)} .chg.down{color:var(--bad)}
+    .mini{font-size:12px;color:var(--muted)}
     .contract{margin-top:16px;padding:12px;background:#071223;border:1px solid #0e263d;border-radius:var(--radius);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .chip{padding:6px 10px;border-radius:999px;background:#0a1a2d;border:1px solid #123149}
-    footer{margin:32px 0 20px;color:#7ea3bf;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap}
+    .chip{padding:6px 10px;border-radius:999px;background:#0a1a2d;border:1px solid var(--border)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .tile{background:#0a182a;border:1px solid var(--border);border-radius:14px;padding:14px}
+    .h3{font-size:18px;margin:0 0 6px}
+    .sm{color:#b7cee0;font-size:14px}
+    .faq .q{cursor:pointer;user-select:none;padding:12px;border:1px solid var(--border);border-radius:12px;background:#071a2b;margin-bottom:10px}
+    .faq .a{display:none;padding:10px 12px;color:#cfe7ff;border-left:2px solid var(--accent2);margin:-6px 0 10px 6px}
+    .stickers{position:relative;overflow:hidden;border-radius:16px;min-height:280px;display:grid;place-items:center;text-align:center;padding:14px;
+      background: radial-gradient(800px 220px at 50% -20%, #0d2742 0%, transparent 60%), linear-gradient(180deg,#061222,#080f19);
+      border: 1px solid #102a41;}
+    .floaters span{position:absolute;top:-60px;font-size:28px;opacity:.5;pointer-events:none;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4));animation:drift linear infinite}
+    @keyframes drift{from{transform:translateY(-60px) rotate(0)} to{transform:translateY(120vh) rotate(40deg)}}
+    footer{margin:38px 0 22px;color:#7ea3bf;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="brand">
-      <div class="logo"></div>
+      <div class="logo" id="siteLogo"></div>
       <div class="title">
-        <b>Tendy Tiger ($TENDY)</b><br><span>On The Open Network</span>
+        <b>Tendy Tiger ($TENDY)</b><br><span class="mini">On The Open Network</span>
       </div>
     </div>
     <nav class="cta-row">
@@ -58,86 +85,162 @@
     </nav>
   </header>
 
-  <main>
-    <section class="card">
-      <h1 class="big">A Telegram classic, reborn as a meme token.</h1>
-      <p class="lead">
-        <b>Tendy Tiger</b> is one of the original Telegram sticker packs — now brought to life on TON.
-        Alongside icons like <i>Utya</i>, <i>Cherry</i>, and <i>Fromg</i>, Tendy holds a special place in Telegram culture
-        and features with them in the limited <i>“Happy Toys”</i> version of the <i>“Lush Bouquet”</i> Telegram gift 💐.
-      </p>
+  <!-- Hero -->
+  <section class="card">
+    <h1 class="big">A Telegram classic, reborn as a meme token.</h1>
+    <p class="lead">
+      <b>Tendy Tiger</b> is one of the original Telegram sticker packs — now brought to life on TON.
+      Alongside icons like <i>Utya</i>, <i>Cherry</i>, and <i>Fromg</i>, Tendy holds a special place in Telegram culture
+      and features with them in the limited <i>“Happy Toys”</i> version of the <i>“Lush Bouquet”</i> Telegram gift 💐.
+    </p>
 
-      <div class="pricepill">
-        <div class="kv"><b id="priceUsd">–</b> <small>USD</small></div>
-        <div class="kv"><b class="chg" id="change24h">–</b> <small>24h</small></div>
-        <div class="kv"><b id="liquidity">–</b> <small>Liquidity</small></div>
-        <div class="kv"><b id="fdv">–</b> <small>FDV</small></div>
-        <button class="btn" id="refreshBtn" type="button">Refresh</button>
+    <div class="pricepill">
+      <div class="kv"><b id="priceUsd">–</b> <small>USD</small></div>
+      <div class="kv"><b class="chg" id="change24h">–</b> <small>24h</small></div>
+      <div class="kv"><b id="liquidity">–</b> <small>Liquidity</small></div>
+      <div class="kv"><b id="fdv">–</b> <small>FDV</small></div>
+      <button class="btn" id="refreshBtn" type="button">Refresh</button>
+    </div>
+    <div id="priceStatus" class="mini" style="margin-top:6px;"></div>
+
+    <div class="contract">
+      <span class="chip">Contract:</span>
+      <span class="chip" id="shortAddr"></span>
+      <button class="btn" id="copyBtn" type="button">Copy</button>
+      <a class="btn" id="viewLink" href="#" target="_blank" rel="noopener">View on Tonviewer</a>
+    </div>
+  </section>
+
+  <!-- Why / Features -->
+  <section class="grid-3">
+    <div class="tile">
+      <h3 class="h3">Why $TENDY?</h3>
+      <p class="sm">A verified piece of Telegram culture — fun-first, meme-forward, community-led. Simple site, simple story, strong vibes.</p>
+    </div>
+    <div class="tile">
+      <h3 class="h3">On-chain Proofs</h3>
+      <p class="sm">Ownership/LP plan, links to locks or renounce when ready. Transparency so the community can track everything.</p>
+    </div>
+    <div class="tile">
+      <h3 class="h3">Sticker DNA</h3>
+      <p class="sm">Inspired by Telegram’s early creative era. We celebrate Tendy, Utya, Cherry, Fromg & friends in events, raids & art.</p>
+    </div>
+  </section>
+
+  <!-- How to Buy (TON) -->
+  <section class="card">
+    <h3 class="h3">How to Buy on TON (quick)</h3>
+    <div class="grid-2">
+      <div class="tile">
+        <b>1) Install a wallet</b>
+        <p class="sm">Use Tonkeeper / MyTonWallet. Save your seed phrase securely.</p>
+        <b>2) Fund with TON</b>
+        <p class="sm">Buy TON on a CEX or P2P, then withdraw to your wallet.</p>
       </div>
-
-      <div class="contract">
-        <span class="chip">Contract:</span>
-        <span class="chip" id="shortAddr"></span>
-        <button class="btn" id="copyBtn" type="button">Copy</button>
-        <a class="btn" id="viewLink" href="#" target="_blank" rel="noopener">View on Tonviewer</a>
+      <div class="tile">
+        <b>3) Open the Chart</b>
+        <p class="sm">Tap <b>Chart</b> above (GeckoTerminal). You can trade from there or jump to a DEX.</p>
+        <b>4) Swap for $TENDY</b>
+        <p class="sm">Confirm slippage if needed. Always double-check the contract.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="card">
-      <h3>Tendy Tiger Lore</h3>
-      <p>
-        Tendy Tiger is one of the original Telegram sticker packs! A true collectible from Telegram’s early creative era, now brought to life on TON!
-        Alongside icons like Utya, Cherry, and Fromg, Tendy Tiger holds official status within Telegram culture.
-        It’s also featured with them in the limited “Happy Toys” version of the “Lush Bouquet” Telegram gift — a nod to its place among Telegram’s most recognized characters.
-      </p>
-    </section>
-  </main>
+  <!-- Sticker vibes -->
+  <section class="card stickers">
+    <div class="floaters" id="floaters" aria-hidden="true"></div>
+    <div>
+      <h3 class="h3">Sticker Vibes</h3>
+      <p class="sm">Lightweight emoji “rain” for vibes. Swap these for Tendy/Telegram assets later.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="card faq">
+    <h3 class="h3">FAQ</h3>
+    <div class="q">Is this affiliated with Telegram?</div>
+    <div class="a">No. This is a community meme project inspired by Telegram sticker culture. DYOR.</div>
+
+    <div class="q">Where can I verify the token?</div>
+    <div class="a">Use Tonviewer (button above) to see the <span class="mini">jetton</span>, holders, and transfers. Only trust the contract on this site.</div>
+
+    <div class="q">Will there be taxes or LP locks?</div>
+    <div class="a">If we add taxes or lock/renounce LP, we’ll publish links here. The current site aims for clarity and fun over complexity.</div>
+
+    <div class="q">The price isn’t showing?</div>
+    <div class="a">Make sure the GeckoTerminal <b>GT_POOL_ID</b> is correct <i>or</i> at least the contract is set. We first try the token endpoint (by contract), then the pool endpoint (by GT pool id).</div>
+  </section>
+
+  <!-- Lore -->
+  <section class="card">
+    <h3 class="h3">Tendy Tiger Lore</h3>
+    <p class="sm">
+      Tendy Tiger is one of the original Telegram sticker packs! A true collectible from Telegram’s early creative era, now brought to life on TON!
+      Alongside icons like Utya, Cherry, and Fromg, Tendy Tiger holds official status within Telegram culture.
+      It’s also featured with them in the limited “Happy Toys” version of the “Lush Bouquet” Telegram gift — a nod to its place among Telegram’s most recognized characters.
+    </p>
+  </section>
 
   <footer>
-    <div>© <span id="year"></span> Tendy Tiger</div>
-    <div>Not affiliated with Telegram. DYOR.</div>
+    <div>© <span id="year"></span> Tendy Tiger — community meme on TON.</div>
+    <div class="mini">Not affiliated with Telegram. DYOR.</div>
   </footer>
 </div>
 
 <script>
-  /* ========= EDIT THESE (just the pool + socials) ========= */
+  /* ====== EDIT THESE ====== */
   const TOKEN_ADDRESS = "EQAUaXNNIGnCq96R6NDZBCZxC0TyFyVmwZozuiNhFTzBeC7R";
-  const GT_POOL_ID    = "XXXXXXXXXXXXXXXXXXXXXXXX"; // GeckoTerminal pool id (TON), e.g. 'eqxxxxxxxx...'
+  const GT_POOL_ID    = ""; // ← optional but recommended (GeckoTerminal pool id)
   const TELEGRAM_URL  = "https://t.me/your_tendy_channel";
   const X_URL         = "https://x.com/your_tendy";
 
-  /* ========= Derived links (auto from GeckoTerminal pool) ========= */
-  const GT_POOL_URL   = `https://www.geckoterminal.com/ton/pools/${encodeURIComponent(GT_POOL_ID)}`;
-  // Use GT pool page for both chart and buy (users can trade from GT). Safer than guessing DEX URL formats.
-  const BUY_URL       = GT_POOL_URL;
-  const CHART_URL     = GT_POOL_URL;
+  /* ====== Derived links ====== */
   const TONVIEWER_URL = `https://tonviewer.com/jetton/${TOKEN_ADDRESS}`;
+  const GT_POOL_URL   = GT_POOL_ID ? `https://www.geckoterminal.com/ton/pools/${encodeURIComponent(GT_POOL_ID)}` : "#";
+  const BUY_URL       = GT_POOL_ID ? GT_POOL_URL : TONVIEWER_URL; // fallback if pool id missing
+  const CHART_URL     = GT_POOL_ID ? GT_POOL_URL : TONVIEWER_URL;
 
-  /* ========= Wire links ========= */
+  // Wire links
   document.getElementById("chartLink").href = CHART_URL;
   document.getElementById("buyLink").href   = BUY_URL;
   document.getElementById("tgLink").href    = TELEGRAM_URL;
   document.getElementById("xLink").href     = X_URL;
   document.getElementById("viewLink").href  = TONVIEWER_URL;
 
-  /* ========= Contract display + copy ========= */
-  document.getElementById("shortAddr").textContent =
-    TOKEN_ADDRESS.slice(0,8)+"…"+TOKEN_ADDRESS.slice(-6);
+  // Contract display + copy
+  document.getElementById("shortAddr").textContent = TOKEN_ADDRESS.slice(0,8)+"…"+TOKEN_ADDRESS.slice(-6);
   document.getElementById("copyBtn").onclick = async () => {
     try { await navigator.clipboard.writeText(TOKEN_ADDRESS);
-      const b = document.getElementById("copyBtn"); const t=b.textContent; b.textContent="Copied!"; setTimeout(()=>b.textContent=t,1200);
+      const b=document.getElementById("copyBtn"); const t=b.textContent; b.textContent="Copied!"; setTimeout(()=>b.textContent=t,1200);
     } catch { alert("Copy failed. Long-press to copy:\n"+TOKEN_ADDRESS); }
   };
 
-  /* ========= Footer year ========= */
+  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /* ========= Price from GeckoTerminal only ========= */
+  /* ====== Fun sticker floaters ====== */
+  const icons = ["🐯","🧸","🍒","🐥","🐸","💐","⭐","🧩"];
+  const floaters = document.getElementById("floaters");
+  function addFloater(i){
+    const s=document.createElement("span"); s.textContent=icons[i%icons.length];
+    const left=Math.random()*100, dur=10+Math.random()*16, delay=Math.random()*-16;
+    s.style.left=left+"vw"; s.style.animationDuration=dur+"s"; s.style.animationDelay=delay+"s";
+    floaters.appendChild(s); setTimeout(()=>s.remove(),(dur+1)*1000);
+  }
+  for(let i=0;i<12;i++) addFloater(i);
+  setInterval(()=>addFloater(Math.floor(Math.random()*icons.length)), 700);
+
+  /* ====== PRICE: GeckoTerminal only (robust) ======
+     1) Try token-by-address endpoint (works with just TOKEN_ADDRESS).
+     2) If liquidity/FDV missing and GT_POOL_ID exists, fetch pool endpoint for those.
+     3) If pool id is missing, we still show token price if GT supports it.
+  */
   const priceEl=document.getElementById("priceUsd");
   const chgEl=document.getElementById("change24h");
   const liqEl=document.getElementById("liquidity");
   const fdvEl=document.getElementById("fdv");
   const refreshBtn=document.getElementById("refreshBtn");
+  const statusEl=document.getElementById("priceStatus");
 
   function fmtUSD(n){const x=Number(n);if(!isFinite(x))return"–";
     if(x>=1) return "$"+x.toLocaleString(undefined,{maximumFractionDigits:4});
@@ -156,39 +259,80 @@
     chgEl.className="chg "+(x>=0?"up":"down");
   }
 
-  async function fetchGeckoTerminalPool(poolId){
-    const url=`https://api.geckoterminal.com/api/v2/networks/ton/pools/${encodeURIComponent(poolId)}`;
-    const res = await fetch(url, { cache: "no-store" });
-    if(!res.ok) throw new Error("GT "+res.status);
-    const json = await res.json();
-    const a = json?.data?.attributes || {};
+  async function gtFetchToken(address){
+    // Try both known attribute spellings to be safe.
+    const url=`https://api.geckoterminal.com/api/v2/networks/ton/tokens/${encodeURIComponent(address)}`;
+    const res=await fetch(url,{cache:"no-store"});
+    if(!res.ok) throw new Error("GT token "+res.status);
+    const a=(await res.json())?.data?.attributes||{};
     return {
-      priceUsd: Number(a.price_in_usd ?? 0),
-      change24h: Number(a.price_change_percentage?.["24h"] ?? 0),
-      liquidity: Number(a.reserve_in_usd ?? 0),
-      fdv: Number(a.fdv_usd ?? 0),
+      priceUsd: Number(a.price_usd ?? a.price_in_usd ?? NaN),
+      change24h: Number(a.price_change_percentage?.["24h"] ?? NaN),
+      fdv: Number(a.fdv_usd ?? NaN)
+      // liquidity not always present on token endpoint
+    };
+  }
+  async function gtFetchPool(poolId){
+    const url=`https://api.geckoterminal.com/api/v2/networks/ton/pools/${encodeURIComponent(poolId)}`;
+    const res=await fetch(url,{cache:"no-store"});
+    if(!res.ok) throw new Error("GT pool "+res.status);
+    const a=(await res.json())?.data?.attributes||{};
+    return {
+      priceUsd: Number(a.price_in_usd ?? NaN),
+      change24h: Number(a.price_change_percentage?.["24h"] ?? NaN),
+      liquidity: Number(a.reserve_in_usd ?? NaN),
+      fdv: Number(a.fdv_usd ?? NaN)
     };
   }
 
   async function loadPrice(){
-    refreshBtn.disabled = true;
+    refreshBtn.disabled=true;
+    statusEl.textContent="Fetching from GeckoTerminal…";
     try{
-      if(!GT_POOL_ID){ throw new Error("Missing GT pool id"); }
-      const d = await fetchGeckoTerminalPool(GT_POOL_ID);
-      priceEl.textContent = fmtUSD(d.priceUsd);
-      setChange(d.change24h);
-      liqEl.textContent = "$"+fmtNum(d.liquidity);
-      fdvEl.textContent = d.fdv ? "$"+fmtNum(d.fdv) : "–";
+      // 1) Token-by-address (works even if you don't know the pool yet)
+      const t = await gtFetchToken(TOKEN_ADDRESS);
+      let price=t.priceUsd, chg=t.change24h, liq=NaN, fdv=t.fdv;
+
+      // 2) If we have a pool id, get liquidity (and overwrite missing bits)
+      if (GT_POOL_ID){
+        try{
+          const p = await gtFetchPool(GT_POOL_ID);
+          if (!isFinite(price)) price = p.priceUsd;
+          if (!isFinite(chg))   chg   = p.change24h;
+          if (!isFinite(fdv))   fdv   = p.fdv;
+          liq = p.liquidity;
+        }catch(e){ /* keep token values */ }
+      }
+
+      priceEl.textContent = fmtUSD(price);
+      setChange(chg);
+      liqEl.textContent = isFinite(liq) ? "$"+fmtNum(liq) : "–";
+      fdvEl.textContent = isFinite(fdv) ? "$"+fmtNum(fdv) : "–";
+
+      const notes=[];
+      if(!GT_POOL_ID) notes.push("Tip: add GT_POOL_ID for liquidity.");
+      if(!isFinite(price)) notes.push("No price yet on GT.");
+      statusEl.textContent = notes.length ? notes.join(" ") : "Live from GeckoTerminal.";
     }catch(e){
       priceEl.textContent="–"; chgEl.textContent="–"; chgEl.className="chg";
       liqEl.textContent="–"; fdvEl.textContent="–";
+      statusEl.textContent="Couldn’t load from GeckoTerminal. Check contract and/or GT_POOL_ID.";
     }finally{
-      refreshBtn.disabled = false;
+      refreshBtn.disabled=false;
     }
   }
-  refreshBtn.onclick = loadPrice;
+  document.getElementById("refreshBtn").onclick=loadPrice;
   loadPrice();
-  setInterval(loadPrice, 60_000); // refresh every minute
+  setInterval(loadPrice, 60_000);
+  
+  /* ====== Tiny FAQ toggles ====== */
+  document.querySelectorAll(".faq .q").forEach(q=>{
+    q.addEventListener("click",()=>{
+      const a=q.nextElementSibling; const show=a.style.display!=="block";
+      document.querySelectorAll(".faq .a").forEach(x=>x.style.display="none");
+      a.style.display=show?"block":"none";
+    });
+  });
 </script>
 </body>
 </html>
